@@ -1,23 +1,22 @@
 package com.shvrev.studentplatform.mq;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shvrev.studentplatform.entity.db.Student;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-import javax.jms.Message;
-import javax.jms.MessageListener;
-
 @Component
-public class JMSConsumer implements MessageListener {
-//    @JmsListener(destination = "huemoe", containerFactory = "jmsListenerContainerFactory")
-//    public void consume(Student message) {
-//        System.out.println("Picked up message: " + message);
-//    }
+@RequiredArgsConstructor
+public class JMSConsumer {
+
+    private final ObjectMapper objectMapper;
 
     @SneakyThrows
-    @Override
-    public void onMessage(Message message) {
-        System.out.println(message.getBody(String.class));
+    @JmsListener(destination = "huemoe", containerFactory = "myFactory")
+    public void consume(String message) {
+        objectMapper.readValue(message, Student.class);
+        System.out.println("Picked up message: " + message);
     }
 }
