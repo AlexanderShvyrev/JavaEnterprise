@@ -14,7 +14,7 @@ public class JMSConsumer {
     private final ObjectMapper objectMapper;
 
     @SneakyThrows
-    @JmsListener(destination = "huemoe", containerFactory = "myFactory")
+    @JmsListener(destination = "huemoe")
     public void consume(String message) {
         objectMapper.readValue(message, Student.class);
         System.out.println("Picked up message: " + message);
