@@ -1,11 +1,14 @@
 package com.shvrev.studentplatform.controller;
 
 import com.shvrev.studentplatform.entity.db.Student;
+import com.shvrev.studentplatform.entity.dto.StudentDTO;
 import com.shvrev.studentplatform.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -14,25 +17,30 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
     @GetMapping("students")
-    public List<Student> getAllStudents(){
+    public List<StudentDTO> getAllStudents(){
         return studentService.getAllStudents();
     }
 
     @PostMapping("students")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createStudent(@RequestBody Student student){
+    public void createStudent(@RequestBody @Valid StudentDTO student){
         studentService.addStudent(student);
     }
 
-    @PutMapping("update/student")
+    @PutMapping("update/student/{studentId}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateStudent(@RequestBody Student student){
-        studentService.updateStudent(student);
+    public void updateStudent(@RequestBody @Valid StudentDTO student, @PathVariable Long studentId){
+        studentService.updateStudent(student, studentId);
     }
 
     @DeleteMapping("delete/student/{studentId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteStudent(@PathVariable Long studentId){
         studentService.deleteStudent(studentId);
+    }
+
+    @GetMapping("students/adults")
+    public List<StudentDTO> getAdults(){
+        return studentService.getAdults();
     }
 }

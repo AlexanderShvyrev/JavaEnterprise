@@ -6,6 +6,7 @@ import com.shvrev.studentplatform.entity.db.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,8 +17,10 @@ public class JMSProducer {
     @Value("huemoe")
     private String topic;
 
+    @Async
     public void sendMessage(Student message){
         try{
+            Thread.sleep(5000);
             jmsTemplate.convertAndSend(topic, objectMapper.writeValueAsString(message));
         } catch(Exception e){
             System.out.println(e);
