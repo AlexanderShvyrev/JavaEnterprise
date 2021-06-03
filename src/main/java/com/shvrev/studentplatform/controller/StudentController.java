@@ -1,10 +1,8 @@
 package com.shvrev.studentplatform.controller;
 
-import com.shvrev.studentplatform.entity.db.Student;
 import com.shvrev.studentplatform.entity.dto.StudentDTO;
-import com.shvrev.studentplatform.service.StudentService;
+import com.shvrev.studentplatform.unit.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

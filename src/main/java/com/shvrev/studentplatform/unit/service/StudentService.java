@@ -1,4 +1,4 @@
-package com.shvrev.studentplatform.service;
+package com.shvrev.studentplatform.unit.service;
 
 import com.shvrev.studentplatform.converter.StudentConverter;
 import com.shvrev.studentplatform.entity.db.Student;
