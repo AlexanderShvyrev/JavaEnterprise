@@ -1,9 +1,10 @@
-package com.shvrev.studentplatform.unit.service;
+package com.shvrev.testing.studentplatform.unit.service;
 
 import com.shvrev.studentplatform.converter.StudentConverter;
 import com.shvrev.studentplatform.entity.db.Student;
 import com.shvrev.studentplatform.entity.dto.StudentDTO;
 import com.shvrev.studentplatform.mapper.StudentMapper;
+import com.shvrev.studentplatform.unit.service.StudentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

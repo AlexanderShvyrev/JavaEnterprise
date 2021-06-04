@@ -1,8 +1,6 @@
-package com.shvrev.studentplatform.integration.container;
+package com.shvrev.testing.studentplatform.integration.container;
 
 import org.testcontainers.containers.PostgreSQLContainer;
-
-import javax.annotation.PostConstruct;
 
 public class PostgresContainer extends PostgreSQLContainer<PostgresContainer> {
     private static PostgresContainer container;

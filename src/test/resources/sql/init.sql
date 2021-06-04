@@ -1,7 +1,7 @@
 -- Table: public.students
 
 -- DROP TABLE public.students;
-
+CREATE SEQUENCE students_student_id_seq START 1;
 CREATE TABLE public.students
 (
     student_id bigint NOT NULL DEFAULT nextval('students_student_id_seq'::regclass),
@@ -11,8 +11,3 @@ CREATE TABLE public.students
     created_at timestamp without time zone NOT NULL,
     CONSTRAINT students_pkey PRIMARY KEY (student_id)
 )
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.students
-    OWNER to postgres;

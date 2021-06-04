@@ -1,4 +1,4 @@
-package com.shvrev.studentplatform.integration.common;
+package com.shvrev.testing.studentplatform.integration.common;
 
 
 import com.fasterxml.jackson.core.JsonParseException;
