@@ -1,5 +1,6 @@
 package com.shvrev.studentplatform.unit.service;
 
+import com.shvrev.studentplatform.aop.logging.TestLogger;
 import com.shvrev.studentplatform.converter.StudentConverter;
 import com.shvrev.studentplatform.entity.db.Student;
 import com.shvrev.studentplatform.entity.dto.StudentDTO;
@@ -22,10 +23,12 @@ public class StudentService {
     private final StudentConverter studentConverter;
     private final JMSProducer jmsProducer;
 
+    @TestLogger
     public List<StudentDTO> getAllStudents(){
         return studentConverter.convertedStudentToDTO(studentMapper.getAllStudents());
     }
 
+    @TestLogger
     public void addStudent(StudentDTO student) {
         Student newStudent = studentConverter.convertedStudent(student);
         newStudent.setCreatedAt(LocalDateTime.now());
@@ -42,6 +45,7 @@ public class StudentService {
         }
     }
 
+    @TestLogger
     public void deleteStudent(Long studentId) {
         if(checkIfExists(studentId)){
             studentMapper.deleteStudent(studentId);
@@ -53,6 +57,7 @@ public class StudentService {
         return students.stream().anyMatch(student -> student.getStudentId().equals(studentId));
     }
 
+    @TestLogger
     public List<StudentDTO> getAdults(){
         List<Student> students = studentMapper.getAllStudents();
         List<StudentDTO> adults = new ArrayList<>();

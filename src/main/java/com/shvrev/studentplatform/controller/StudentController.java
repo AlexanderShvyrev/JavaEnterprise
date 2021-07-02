@@ -2,6 +2,8 @@ package com.shvrev.studentplatform.controller;
 
 import com.shvrev.studentplatform.entity.dto.StudentDTO;
 import com.shvrev.studentplatform.unit.service.StudentService;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +17,16 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
     @GetMapping("students")
+    @Counted("students.getAllStudents.cnt")
+    @Timed(value = "students.getAllStudents.latency")
     public List<StudentDTO> getAllStudents(){
         return studentService.getAllStudents();
     }
 
     @PostMapping("students")
     @ResponseStatus(HttpStatus.CREATED)
+    @Counted("students.createStudent.cnt")
+    @Timed(value = "students.createStudent.latency")
     public void createStudent(@RequestBody @Valid StudentDTO student){
         studentService.addStudent(student);
     }
@@ -38,6 +44,8 @@ public class StudentController {
     }
 
     @GetMapping("students/adults")
+    @Counted("students.getAdults.cnt")
+    @Timed(value = "students.getAdults.latency")
     public List<StudentDTO> getAdults(){
         return studentService.getAdults();
     }

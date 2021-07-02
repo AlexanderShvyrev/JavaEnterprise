@@ -44,4 +44,9 @@ class StudentServiceTest {
         List<StudentDTO> result = studentService.getAdults();
         assertEquals(2, result.size());
     }
+    @Test
+    void getAllStudents() {
+        List<StudentDTO> result = studentService.getAllStudents();
+        assertEquals(5, result.size());
+    }
 }
